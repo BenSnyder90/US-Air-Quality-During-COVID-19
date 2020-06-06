@@ -20,7 +20,7 @@ function createMap(aqiData) {
     };
   
     // Create the map object with options
-    var map = L.map("map-id", {
+     map = L.map("map-id", {
       center: [37.09, -95.71],
       zoom: 5,
       layers: [lightmap, aqiData]
@@ -44,28 +44,118 @@ function createMap(aqiData) {
   
     // Initialize an array to hold bike markers
     var aqiMarkers = [];
-    var aqiHeat = []
   
     // Loop through the stations array
     for (var index = 0; index < filteredRecords.length; index++) {
       var city = filteredRecords[index];
-      aqiHeat.push([city.Lat, city.Lng, city.AQI]);
+      //aqiHeat.push([city.Lat, city.Lng, city.AQI]);
       // For each station, create a marker and bind a popup with the station's name
-      var cityLoc = L.marker([city.Lat, city.Lng])
-        .bindPopup("<h3>" + city.City + "<h3><h3>Population: " + city.Population + "</h3><h3>AQI: " +city.AQI);
+      var cityLoc = L.circleMarker([city.Lat, city.Lng],{
+        color: "black",
+        weight: 1,
+        fillColor: getColor(city.Category),
+        radius: city.AQI/5,
+        fillOpacity: .8
+      })
+        .bindPopup("<h3>" + city.City +", "+ city.State + "<h3><h4><b>Population: </b>" + city.Population +
+                     "</h4><h4><b>AQI: </b>" +city.AQI + "<b> - ("+ city.Category + ")</b>" +
+                     "<h4><b>Business Closure Date: </b>" + city.initial_business_closure);
   
       // Add the marker to the bikeMarkers array
       aqiMarkers.push(cityLoc);
     }
     console.log(aqiMarkers);
     // Create a layer group made from the bike markers array, pass it into the createMap function
-    createMap(L.layerGroup(aqiMarkers, aqiHeat));
+    createMap(L.layerGroup(aqiMarkers));
   }
   
-    
+  function getColor(category){
+    switch (category) {
+        case "Good":
+            return "green";
+        case "Moderate":
+            return "yellow";
+        case "Unhealthy for Sensitive Groups":
+            return "orange";
+        case "Unhealthy":
+            return "red";
+        case "Very Unhealthy":
+            return "purple";
+        case "Hazardous":
+            return "maroon"   
+        default:
+            return "silver";
+    }
+}
+
+function createHeatmaps(response) {
+  filteredRecords = response.data.filter(d=> d.Date == "2020-05-01");
+  
+  var heatData = {
+    'max': 300,
+    'data': []
+    };
+  console.log(`Creating heatmaps...`);
+  for (var i = 0; i < filteredRecords.length; i++){
+  city = filteredRecords[i];
+  console.log(`City: ${city.City}, Lat: ${city.Lat}, Lng: ${city.Lng}, AQI: ${city.AQI}`);
+  //Add city data to data dict for heatmap
+  heatData.data.push({'lat':city.Lat, 'lng': city.Lng,'count':city.AQI, 'radius': city.AQI/100});
+}
+console.log(heatData);
+      
+//Set config parameters for heatmap. See: https://www.patrick-wied.at/static/heatmapjs/plugin-leaflet-layer.html
+//Radius is set to AQI level of each city divided by 100
+var cfg ={
+  "radius": 'radius',
+  "maxOpacity": .8,
+  "scaleRadius":true,
+  "useLocalExtrema": true
+  };
+
+//Create new heatmap layer and add to maps
+var heatmapLayer = new HeatmapOverlay(cfg).addTo(map);
+//Update map with heatmap data dict
+heatmapLayer.setData(heatData);
+}
+
 
   // Perform an API call to the Citi Bike API to get station information. Call createMarkers when complete
   d3.json("records.json").then( response=>{
       console.log(response.data.length);
       createMarkers(response);
-  });
+      filteredRecords = response.data.filter(d=> d.Date == "2020-05-01");
+      
+      // var testData = {
+      //   max: 51,
+      //   data: [{lat: filteredRecords.Lat, lng: filteredRecords.Lng, count: filteredRecords.AQI}]
+      // };
+      //
+      var heatData = {
+          'max': 300,
+          'data': []
+      };
+      console.log(`Creating heatmaps...`);
+      for (var i = 0; i < filteredRecords.length; i++){
+        city = filteredRecords[i];
+        console.log(`City: ${city.City}, Lat: ${city.Lat}, Lng: ${city.Lng}, AQI: ${city.AQI}`);
+        //Add city data to data dict for heatmap
+        heatData.data.push({'lat':city.Lat, 'lng': city.Lng,'count':city.AQI, 'radius': city.AQI/100});
+      }
+      console.log(heatData);
+            
+      //Set config parameters for heatmap. See: https://www.patrick-wied.at/static/heatmapjs/plugin-leaflet-layer.html
+      //Radius is set to AQI level of each city divided by 100
+      var cfg ={
+        "radius": 'radius',
+        "maxOpacity": .8,
+        "scaleRadius":true,
+        "useLocalExtrema": true
+        };
+      
+      //Create new heatmap layer and add to maps
+      var heatmapLayer = new HeatmapOverlay(cfg).addTo(map);
+      //Update map with heatmap data dict
+      heatmapLayer.setData(heatData);
+      
+      });
