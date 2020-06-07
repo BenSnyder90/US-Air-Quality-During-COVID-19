@@ -52,8 +52,10 @@ function createMap(aqiData) {
       aqiHeat.push([city.Lat, city.Lng, city.AQI]);
       // For each station, create a marker and bind a popup with the station's name
       var cityLoc = L.marker([city.Lat, city.Lng])
-        .bindPopup("<div id='scatter'></div>" + "<h3>" + city.City + "<h3><h3>Population: " + city.Population + "</h3><h3>AQI: " +city.AQI).openPopup();
+        .bindPopup("<h3>" + city.City + "<h3><h3>Population: " + city.Population + "</h3><h3>AQI: " +city.AQI).openPopup();
   
+      
+
       buildCharts(response, city.City);  
       // Add the marker to the bikeMarkers array
       aqiMarkers.push(cityLoc);
@@ -69,11 +71,16 @@ function createMap(aqiData) {
     //d3.json("records.json").then(function(response) {
         //set a date variable for the xaxis by filtering the data by 'Date'
         //set a dailyAQI variable for the y-axis by filtering the data by 'AQI'
-        var cities = response.data.filter(d => d.City === city);
-        var dateX = cities.map(d => d.Date);
-        var dailyAQI = cities.map(d => d.AQI);
+        var oneCity = response.data.filter(d => d.City === city);
+        var dateX = oneCity.map(d => d.Date);
+        var dailyAQI = oneCity.map(d => d.AQI);
+        
+        //Define a variable for the city shutdown date and AQI for the date
+        //var shutdownDate = oneCity.map(d => d.initial_business_closure);
+        //var shutdownAQI = shutdownDate.map(d => d.AQI);
+        
         //var oneDate = dailyAQI.map(d => d.Date);
-        console.log(cities);
+        console.log(oneCity);
 
     trace1 = {
       x: dateX,
@@ -93,7 +100,20 @@ function createMap(aqiData) {
             r: 100,
             t: 100,
             b: 20
-          }
+          },
+          annotations: [
+            {
+              x: "2020-03-09",
+              y: 48,
+              xref: 'x',
+              yref: 'y',
+              text: 'Nonessential Buisness Shutdown Date',
+              showarrow: true,
+              arrowhead: 3,
+              ax: 50,
+              ay: -75
+            }
+          ]
         };
 
         //Create scatter plot in the id="scatter" div
