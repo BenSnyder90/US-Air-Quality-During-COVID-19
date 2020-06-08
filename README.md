@@ -1,7 +1,7 @@
 ## Project # 2
 ## CWRU Data Analytics Bootcamp 2020
 
-## AirQuality after and before COVID-19
+## AirQuality before and after COVID-19
 Kafui Ahedor, Chris Bock, Ali Rizvi, Ben Snyder
 
 Project Proposal: AirQualityProject/Proposal.docx
@@ -10,7 +10,7 @@ Project Proposal: AirQualityProject/Proposal.docx
 The main objective of this project is to review the air quality (2019-20) for different geographical locations and analyze against COVID-19 data by utilizing effective data analytical skills.
 
 ## Data Sources
-Initial csv files were imported from EPA database and stored in our github asset folder; AirQualityProject/asset/sample_data, (1) covid19_policydates.csv (2) daily_aqi_by_cbsa_2019.csv (3) breweriesUSA.csv (3) daily_aqi_by_cbsa_2020.csv 
+Initial csv files were imported from EPA database and stored in our github asset folder; AirQualityProject/asset/sample_data, (1) covid19_policydates.csv (2) daily_aqi_by_cbsa_2019.csv (3) daily_aqi_by_cbsa_2020.csv 
 
 ## Technique/Technology
 *Python/Pandas, was used to initial cleaning and visualizing the data. EPA Data was scraped on the basis of daily AQI (Air Quality Index) value. 51 major US cities were selected based upon their location and population density. SQL/PGAdmin was used to transform and load the data. For graphic analysis; D3, Leaflet and mapbox were used.  
