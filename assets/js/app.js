@@ -44,13 +44,13 @@ function createMap(aqiData) {
   
     // Initialize an array to hold bike markers
     var aqiMarkers = [];
-    var aqiHeat = []
+    //var aqiHeat = []
   
     // Loop through the stations array
     for (var index = 0; index < filteredRecords.length; index++) {
       var city = filteredRecords[index];
-      aqiHeat.push([city.Lat, city.Lng, city.AQI]);
-      var xCity = city.City;
+      //aqiHeat.push([city.Lat, city.Lng, city.AQI]);
+      //var xCity = city.City;
       // For each station, create a marker and bind a popup with the station's name
       var cityLoc = L.marker([city.Lat, city.Lng])
         .bindPopup("<h3>" + city.City + "<h3><h3>Population: " + city.Population + "</h3><h3>AQI: " +city.AQI);
