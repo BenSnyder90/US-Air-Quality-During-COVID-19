@@ -1,82 +1,3 @@
-function createMap(aqiData) {
-    console.log("Create Maps...");
-    // Create the tile layer that will be the background of our map
-    var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-      maxZoom: 18,
-      id: "light-v10",
-      accessToken: api_key
-    });
-    //var heat = L.heatLayer(aqiHeat).addTo(map);
-    // Create a baseMaps object to hold the lightmap layer
-    var baseMaps = {
-      "Light Map": lightmap
-    };
-  
-    // Create an overlayMaps object to hold the bikeStations layer
-    var overlayMaps = {
-      "City": aqiData,
-      //"Heatmap": heat
-    };
-  
-    // Create the map object with options
-     map = L.map("map-id", {
-      center: [37.09, -95.71],
-      zoom: 5,
-      layers: [lightmap, aqiData]
-    });
-  
-    // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
-    L.control.layers(baseMaps, overlayMaps, {
-      collapsed: false
-    }).addTo(map);
-
-    
-  }
-  
-  function createBaseMap() {
-    console.log("Create Base Maps...");
-    // Create the tile layer that will be the background of our map
-     lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-      maxZoom: 18,
-      id: "light-v10",
-      accessToken: api_key
-    });
-    //var heat = L.heatLayer(aqiHeat).addTo(map);
-    // Create a baseMaps object to hold the lightmap layer
-     baseMaps = {
-      "Light Map": lightmap
-    };
-    
-    map = L.map("map-id", {
-      center: [37.09, -95.71],
-      zoom: 5,
-      layers: [lightmap]
-    });
-  }
-  
-  function createOverlays(layergroups){
-    // Create an overlayMaps object to hold the bikeStations layer
-     overlayMaps = {
-      "City": aqiData,
-      //"Heatmap": heat
-    };
-  
-    // Create the map object with options
-     map = L.map("map-id", {
-      center: [37.09, -95.71],
-      zoom: 5,
-      layers: [lightmap, aqiData]
-    });
-  
-    // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
-    L.control.layers(baseMaps, overlayMaps, {
-      collapsed: false
-    }).addTo(map);
-
-    
-  }
   function createMarkers(response, date) {
     console.log(`CreateMarkers...`);
     // Pull the "stations" property off of response.data
@@ -88,7 +9,7 @@ function createMap(aqiData) {
     // Initialize an array to hold bike markers
     var aqiMarkers = [];
   
-    // Loop through the stations array
+    // Loop through the cities array
     for (var index = 0; index < filteredRecords.length; index++) {
       var city = filteredRecords[index];
       //aqiHeat.push([city.Lat, city.Lng, city.AQI]);
@@ -100,16 +21,86 @@ function createMap(aqiData) {
         radius: city.AQI/5,
         fillOpacity: .8
       })
-        .bindPopup("<h3>" + city.City +", "+ city.State + "</h3><h3>"+city.Date+"<h4><b>Population: </b>" + city.Population +
+        .bindPopup("<h3>" + city.City +"</h3> "+ city.State + "<h3>"+city.Date+"<h4><b>Population: </b>" + city.Population +
                      "</h4><h4><b>AQI: </b>" +city.AQI + "<b> - ("+ city.Category + ")</b>" +
                      "<h4><b>Business Closure Date: </b>" + city.initial_business_closure);
   
-      // Add the marker to the bikeMarkers array
+      // Add the marker to the aqiMarkers array
       aqiMarkers.push(cityLoc);
     }
     //console.log(aqiMarkers);
+
+    aqiMarkers.forEach(function(item){
+      item.on('click', function(e){
+        buildCharts(response, e.target._popup._contentNode.firstElementChild.innerText);
+      })
+    });
+    console.log(aqiMarkers);
     // Create a layer group made from the bike markers array, pass it into the createMap function
-    //createMap(L.layerGroup(aqiMarkers));
+    // createMap(L.layerGroup(aqiMarkers));
+  
+  
+  function buildCharts(response, city) {
+    console.log(response.data);
+    //Use D3 to retrieve data from json file
+    //d3.json("records.json").then(function(response) {
+        //set a date variable for the xaxis by filtering the data by 'Date'
+        //set a dailyAQI variable for the y-axis by filtering the data by 'AQI'
+        var oneCity = response.data.filter(d => d.City === city);
+        console.log("City data: " + oneCity);
+        var dateX = oneCity.map(d => d.Date);
+        //dateX = convertDate(dateX);
+        console.log(dateX);
+        var dailyAQI = oneCity.map(d => d.AQI);
+        
+        //Define a variable for the city shutdown date and AQI for the date
+        //var shutdownDate = oneCity.map(d => d.initial_business_closure);
+        //var shutdownAQI = shutdownDate.map(d => d.AQI);
+        
+        //var oneDate = dailyAQI.map(d => d.Date);
+        console.log(`Create data for ${city}`);
+
+    trace1 = {
+      x: dateX,
+      y: dailyAQI,
+      text: dateX,
+      type: "scatter",
+      mode: "lines+markers"
+      //marker: { size: 12 }
+    };
+  
+    var data = [trace1];
+
+        var layout = {
+          title: `Daily AQI for ${city}`,
+          margin: {
+            l: 100,
+            r: 100,
+            t: 100,
+            b: 20
+          },
+          xaxis: {
+            type: "Date"
+          },
+          annotations: [
+            {
+              x: "2020-03-09",
+              y: 48,
+              xref: 'x',
+              yref: 'y',
+              text: 'Nonessential Buisnesses Shutdown',
+              showarrow: true,
+              arrowhead: 3,
+              ax: 70,
+              ay: -140
+            }
+          ]
+        };
+
+        //Create scatter plot in the id="scatter" div
+        Plotly.newPlot("scatter", data, layout);
+  };
+    // Create a layer group made from the city markers array, pass it into the createMap function
     var group = L.layerGroup(aqiMarkers);
     return group;
   }
@@ -290,7 +281,7 @@ return heatmapLayer;
     
   
     
-      console.log("Layers");
+      console.log("Adding Control Layers");
     // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
