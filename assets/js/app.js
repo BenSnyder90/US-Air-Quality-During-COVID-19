@@ -53,19 +53,19 @@ function createMap(aqiData) {
       var xCity = city.City;
       // For each station, create a marker and bind a popup with the station's name
       var cityLoc = L.marker([city.Lat, city.Lng])
-        .bindPopup("<h3>" + city.City + "<h3><h3>Population: " + city.Population + "</h3><h3>AQI: " +city.AQI)
-        .on('click', onClick(xCity));
+        .bindPopup("<h3>" + city.City + "<h3><h3>Population: " + city.Population + "</h3><h3>AQI: " +city.AQI);
+        //.on('click', onClick(xCity));
   
       //L.marker([city.Lat, city.Lng]).addTo(map).on('click', onClick);
       //L.marker([city.Lat, city.Lng]).on('click', onClick);
         
         
-        function onClick(city) {
-          console.log(city);  
-          buildCharts(response, city);
+        // function onClick(city) {
+        //   console.log(city);  
+        //   buildCharts(response, city);
+        //}
 
             
-        }
 
 
       //old code for single Wash DC plot  
@@ -74,6 +74,12 @@ function createMap(aqiData) {
       // Add the marker to the bikeMarkers array
       aqiMarkers.push(cityLoc);
     }
+
+    aqiMarkers.forEach(function(item){
+      item.on('click', function(e){
+        buildCharts(response, e.target._popup._contentNode.firstElementChild.innerText);
+      })
+    });
     console.log(aqiMarkers);
     // Create a layer group made from the bike markers array, pass it into the createMap function
     createMap(L.layerGroup(aqiMarkers));
@@ -122,11 +128,11 @@ function createMap(aqiData) {
               y: 48,
               xref: 'x',
               yref: 'y',
-              text: 'Nonessential Buisness Shutdown Date',
+              text: 'Nonessential Buisnesses Shutdown',
               showarrow: true,
               arrowhead: 3,
-              ax: 50,
-              ay: -75
+              ax: 70,
+              ay: -140
             }
           ]
         };
