@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>AQI Maps</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -17,18 +17,33 @@
 </head>
 
 <body>
-    <div id="map-id"></div>
+
+  <div id="map-id"></div>>
+    
+  
+  <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+      <div id="split"></div>
+    </div>
+    </div>
+  </div>
+
+    <!--<div id="scatter"></div>-->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-  <!--<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>-->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- Leaflet JavaScript -->
   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
   crossorigin=""></script>
-  <script src="leaflet-heat.js"></script>
-
+  <script src="heatmap.js"></script>
+  <script src="leaflet-heatmap.js"></script>
+  <script src= "leaflet-splitmap.js"></script>
+  <script src="leaflet-easyPrint-gh-pages/dist/bundle.js"></script>
   <script src="assets/js/config.js"></script>
   <script src="assets/js/app.js"></script>
+  <!--<script src="assets/js/app2.js"></script>-->
   
 </body>
 
