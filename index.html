@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>AQI Maps</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -17,14 +17,42 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" target="_blank" href="https://github.com/BenSnyder90/AirQualityProject">Team "Air"some</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div id="map-id"></div>>
-    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-md-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <b>Menu</b>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Index.html">Home Map</a>
+            <a class="dropdown-item" href="Slider.html">COVID Comparison</a>
+            <a class="dropdown-item" href="About.html">About the Team</a>
+            <a class="dropdown-item" href="records.json">JSON</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="About.html"><b>Team Bios</b></a>
+        </li> 
+        <li class="nav-item active">
+            <a class="nav-link" href="index.html"><b>Home</b><span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="map-id"></div>
+    <div id="split"></div>
   
   <div class="container">
     <div class="row">
     <div class="col-md-12">
-      <div id="split"></div>
+      
     </div>
     </div>
   </div>
@@ -43,7 +71,7 @@
   <script src="leaflet-easyPrint-gh-pages/dist/bundle.js"></script>
   <script src="assets/js/config.js"></script>
   <script src="assets/js/app.js"></script>
-  <!--<script src="assets/js/app2.js"></script>-->
+  <script src="assets/js/app2.js"></script>
   
 </body>
 

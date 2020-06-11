@@ -23,14 +23,14 @@
         radius: city.AQI/5,
         fillOpacity: .8
       })
-        .bindPopup("<h4><b>" + city.City +"</b></h4> "+ "<h5><b>State: </b>"+ city.State + "<h5><b>"+city.Date+"</b><h5><b>Population: </b>" + city.Population +
-                     "<h5><b>AQI: </b>" +city.AQI + "<b> - ("+ city.Category + ")</b>" +
-                     "<h5><b>Business Closure Date: </b>" + city.initial_business_closure
-                     +"<br><div id ='scatter'></div>",{
+        .bindPopup("<h4><b>" + city.City +
+                     "</h4><br><div id ='scatter'></div>",{
                        keepInView: true,
                        minWidth: 700,
                        maxHeight: 300
                      });
+        cityLoc.bindTooltip("<h4><b>" + city.City +"</b></h4> "+ "<h5><b>State: </b>"+ city.State + "<h5><b>Population: </b>" + city.Population +
+        "<h5><b>AQI: </b>" +city.AQI + "<b> - ("+ city.Category + ")</b>");
   
       // Add the marker to the aqiMarkers array
       aqiMarkers.push(cityLoc);
@@ -41,6 +41,7 @@
       item.on('click', function(e){
         buildCharts(response, e.target._popup._contentNode.firstElementChild.innerText);
       })
+      
     });
   
   
@@ -269,6 +270,7 @@
 
     /////////SLIDER MAP////////////
     //Create new map object used in split div
+    //map.remove();
     var splitmap = L.map('split').setView([23.140, -101.887], 5);
 
     //Create left pane and right pane for slider

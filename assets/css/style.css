@@ -1,7 +1,81 @@
 html,
 body,
-#map-id {
+#map-id,
+#slider {
   height: 100%;
-  padding: 0;
-  margin: 0;
+  padding: 7px;
+  margin: 10px;
 }
+
+
+body {
+  background-color:  #918f8f;
+  /*style = "background-color:#bcdbdd"*/
+}
+
+.navbar {
+  background-color: #20c8d4;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding: 7px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 3px;
+  font-size: 20px;
+  font-style: italic;
+  font-family: Impact, sans-serif;
+}
+
+h1, h4 {
+  color: #1cadb8;
+}
+
+figcaption.figure-caption, h3 {
+  color: white;
+}
+
+img.img-thumbnail {
+  width: 75%;
+}
+
+img.float-left {
+  width: 50%
+}
+
+img.about {
+  width: 20%
+}
+
+img.source {
+  width: 10%
+}
+
+img.source2 {
+  width: 7%
+}
+
+img.source3 {
+  width: 15%
+}
+
+img.source4 {
+  width: 5%
+}
+
+.bg-primary {
+  background-color: #1cadb8!important;
+  color: #fff!important;
+}
+
+.card-link {
+  color: #fff!important; 
+}
+
+img.ERD {
+  width: 100%
+}
+
+/*background-color: #007c91*/
