@@ -13,6 +13,39 @@ body,
   bottom: 0;
   width: 75%;
 }
+
+#graph_tutorial {
+  max-width: 300px;
+  height: auto;
+}
+
+#tooltip_tutorial{
+  max-width: 300px;
+  height: auto;
+}
+
+#legend_tutorial {
+  max-width: 300px;
+  height: auto;
+  align-self: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+/*Box Properties*/
+.box{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px 10px 10px;
+  color: black;
+  background-color: rgba(245, 245, 245, 245);
+  box-shadow: 5px 5px 8px 2px rgba(200, 200, 200, 200);
+}
+
 div.jx-arrow.jx-right{
   color: black;
 }
@@ -52,7 +85,7 @@ h1, h4 {
   color: #1cadb8;
 }
 
-figcaption.figure-caption, h3 {
+figcaption.figure-caption  {
   color: white;
 }
 

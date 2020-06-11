@@ -30,7 +30,8 @@
             <b>Menu</b>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="index.html">Home Map</a>
+            <a class="dropdown-item" href="index.html">Home</a>
+            <a class="dropdown-item" href="map.html">AQI Map</a>
             <a class="dropdown-item" href="Slider.html">COVID Comparison</a>
             <a class="dropdown-item" href="About.html">About the Team</a>
             <a class="dropdown-item" href="records.json">JSON</a>
@@ -48,9 +49,67 @@
       </span>
     </div>
   </nav>
-
-  <div id="map-id"></div>
-    <div id="split"></div>
+  <div class="container">
+    <div class="jumbotron">
+      <div class="media">
+        <div class="media-body">
+          <h1 class="mt-4 mb-1">COVID and AQI...Can we breathe better if we're under quarantine?</ha>
+        </div>
+        <img class="ml-3" src="assets/images/LA_Before_After.jpg" alt="AirQuality" width=30%>
+      </div>
+      </div>
+  </div>    
+  <div class="container">
+    <div class="row"> 
+        <div class="box">
+          <h2 class="title">How to use the Dashboard</h2>
+          <hr>
+          <h4>Pick an option from the dropdown menu to look at how COVID may have affected AQI levels across the United States.</h4>
+            <div class="container" style="padding-bottom: 40px;">
+                    <div class="row">
+                      
+                      <div class="col-lg-12" style="padding: 30px; text-decoration: underline; text-align: center">
+                      <h3>How to use the AQI Map</h3></div>
+                      <div class="col-lg-4" style="padding: 30px;">
+                        <div class="text" style="font-size:25px; text-align:center;">Change the date with the legend on the top right</div>
+                        
+                          <img class="center" id="legend_tutorial" src="assets/images/Legend.png" alt="Legend">
+                        
+                      </div>
+                      <div class="col-lg-4" style="padding: 30px;">
+                        <div class="title" style="font-size:25px; text-align:center;">Hover over each city to see the AQI of the city on the selected date</div>
+                      
+                          <img class="center" id="tooltip_tutorial" src="assets/images/tooltip.png" alt="Tooltip">
+                        
+                      </div>
+                      <div class="col-lg-4" style="padding: 30px;">
+                        <div class="title" style="font-size:25px; text-align:center;">Click on each city to track the AQI index from January 2019 to May 2020</div>
+                        
+                          <img class="centerl" id="graph_tutorial" src="assets/images/graph.png" alt="Graph">
+                        
+                      </div>
+                    
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6" style="padding: 30px; text-decoration: underline; text-align: center">
+                      <h3>How to use the COVID Comparison Slider</h3></div>
+                      <div class="col-lg-6" style="padding: 30px; text-decoration: underline; text-align: center">
+                        <h3>Records JSON</h3></div>
+                      <div class="col-lg-6" style="padding: 30px;">
+                        <div class="text" style="font-size:25px; text-align:center;">Drag the slider left or right to see the different AQI levels via heatmap radius</div>
+                        
+                          <img class="center" id="legend_tutorial" src="assets/images/slider.png" alt="Legend">
+                        
+                      </div>
+                      <div class="col-lg-6" style="padding: 30px;">
+                        <div class="title" style="font-size:25px; text-align:center;">See the records of our data in JSON format.</div>
+                      
+                          <img class="center" id="tooltip_tutorial" src="assets/images/json.png" alt="Tooltip">
+                        
+                      </div>
+            </div>
+     <br>       
+  
   
   <div class="container">
     <div class="row">
@@ -76,7 +135,7 @@
   <script src= "leaflet-splitmap.js"></script>
   <script src="leaflet-easyPrint-gh-pages/dist/bundle.js"></script>
   <script src="assets/js/config.js"></script>
-  <script src="assets/js/app.js"></script>
+  <!--<script src="assets/js/app.js"></script>-->
   
   
 </body>
