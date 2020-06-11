@@ -1,0 +1,140 @@
+/* home.html */
+body{
+    text-align: center;
+    background-color: rgb(238, 247, 246);
+    
+}
+.mynav {
+    background-color: rgb(150, 225, 238);
+}
+.btn a{
+    color:white;
+    text-decoration: none;
+}
+
+/*  map.html  */
+#cover{
+    border: 1px solid black;
+}
+#map{
+    border: 1px solid lightskyblue;
+    margin:auto ;
+    text-align: center;
+    background-color:white;
+    height: 500px;
+    width: 750px;
+}
+
+.sidebar{
+    background-color: floralwhite;
+    border: 1px solid lightskyblue;
+}
+.btn-primary{
+    margin-top: 20px;
+}
+.row{
+    margin-top: 35px;
+    height: 500px;
+}
+/* ################### image css ######################### */
+* {box-sizing: border-box;}
+
+.img-comp-container {
+  position: relative;
+  height: 200px; /*should be the same height as the images*/
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.img-comp-img img {
+  display: block;
+  /*vertical-align: middle;*/
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index: 9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+/*################### image side by side ##############################*/
+/** {box-sizing: border-box;}*/
+/*
+.img-comp-container {
+  position: relative;
+  height: 200px; /*should be the same height as the images*//*
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+  /*vertical-align:middle;*//*
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index:9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*//*
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}*/
+
+/** {box-sizing: border-box;}*/
+
+.img-comp-container {
+  top: 90px;
+  left:302px;
+  position: absolute;
+  height: 200px; /*should be the same height as the images*/
+  /*z-index:500;*/
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+  /*vertical-align:middle;*/
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index:9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+
+
+
+
+
+
