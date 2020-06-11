@@ -20,8 +20,6 @@ Initial csv files were imported from EPA database and stored in our github asset
 * AirQualityProject /master/merge_data.ipynb;- This Jupyter notebook includes, importing the raw data, cleaning the data-base, saving the clean data into new csv.s
 * AirQualityProject /master/assets/sample_data- hold all the CSVs, working files
 * AirQualityProject /master/assets;- includes all css, js and csv files
-* AirQualityProject /master/assets /ERD.png;- Entity Relationship Diagram
-* AirQualityProject /master/Final Technical Report_ AirQualityProject.docx;- Technical overview
 * AirQualityProject /master/README.md;
 * AirQualityProject/master/sprint_planning_checklist
 
