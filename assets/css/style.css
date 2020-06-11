@@ -1,13 +1,31 @@
 html,
 body,
-#map-id,
-#slider {
+#map-id {
   height: 100%;
   padding: 7px;
   margin: 10px;
 }
 
+#split {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  width: 75;
+}
+div.jx-arrow.jx-right{
+  color: black;
+}
 
+div.jx-arrow.jx-left{
+  color: black;
+}
+div.jx-controller {
+  background-color: gray;
+}
+
+div.jx-control{
+  background-color: gray;
+}
 body {
   background-color:  #918f8f;
   /*style = "background-color:#bcdbdd"*/
@@ -77,5 +95,7 @@ img.source4 {
 img.ERD {
   width: 100%
 }
+
+
 
 /*background-color: #007c91*/
