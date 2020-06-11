@@ -15,10 +15,6 @@ Initial csv files were imported from EPA database and stored in our github asset
 ## Technique/Technology
 *Python/Pandas, was used to initial cleaning and visualizing the data. EPA Data was scraped on the basis of daily AQI (Air Quality Index) value. 51 major US cities were selected based upon their location and population density. SQL/PGAdmin was used to transform and load the data. For graphic analysis; D3, Leaflet and mapbox were used.  
 
-## Technical Overview(?)
-Final Technical report summaries; all the techniques and skills utilized during this AirQualityProject
-* AirQualityProject /master/Final Technical Report_ AirQualityProject.docx
-
 ## Files in the repository:
 * AirQualityProject /master/Proposal;- initial proposal
 * AirQualityProject /master/merge_data.ipynb;- This Jupyter notebook includes, importing the raw data, cleaning the data-base, saving the clean data into new csv.s
