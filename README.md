@@ -1,6 +1,7 @@
 ## Project # 2
 ## CWRU Data Analytics Bootcamp 2020
 
+### GitHub Pages link - https://bensnyder90.github.io/AirQualityProject/
 ## AirQuality before and after COVID-19
 Kafui Ahedor, Chris Bock, Ali Rizvi, Ben Snyder
 
