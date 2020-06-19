@@ -21,7 +21,7 @@
         weight: 1,
         fillColor: getColor(city.Category),
         radius: city.AQI/5,
-        fillOpacity: .8
+        fillOpacity: 1
       })
         .bindPopup("<h4><b>" + city.City +
                      "</h4><br><div id ='scatter'></div>",{
@@ -267,6 +267,30 @@
       exportOnly: true
     }).addTo(map);
     
+
+
+
+    // create legend
+  var legend = L.control({position: "bottomright"});
+  // layer control added, insert div with class legend
+  legend.onAdd = function(myMap) {
+    var div = L.DomUtil.create("div", "info legend"),   
+      //Make a list of the hex code values of the colors used in getcolors
+      mags = ["green","yellow","orange","red","purple","maroon"],
+      //List of labels for each of the different magnitude values
+      labels = ["Good","Moderate","Unhealthy for Sensitive Groups","Unhealthy","Very Unhealthy","Hazardous"]; 
+    // loop through the length of the mags list and add each color to the legend
+
+    for (var i = 0; i < mags.length; i++) {
+        console.log(mags[i] + labels[i]);
+        div.innerHTML +=
+           '<i style="background:' + mags[i] + '"></i><b> ' +
+           labels[i] + '</b><br>';
+    }
+    return div; 
+  };
+  // add legend to map
+  legend.addTo(map);
 
     /////////SLIDER MAP////////////
     //Create new map object used in split div
